@@ -35,4 +35,4 @@ Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 #Init theme
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\powerlevel10k_classic_custom.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:DEV_POSH_THEMES_PATH\powerlevel10k_classic_custom.omp.json" | Invoke-Expression
