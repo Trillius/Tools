@@ -5,42 +5,42 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#00000000",
+          "background": "transparent",
           "foreground": "#5e5e5e",
           "style": "plain",
           "template": "╭─",
           "type": "text"
         },
         {
-          "background": "#00000000",
-          "foreground": "#000000",
+          "background": "transparent",
+          "foreground": "#222222",
           "style": "plain",
           "template": "░▒▓",
           "type": "text"
         },
         {
-          "background": "#000000",
+          "background": "#222222",
           "foreground": "#ffffff",
           "style": "plain",
           "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
           "type": "os"
         },
         {
-          "background": "#000000",
+          "background": "#222222",
           "foreground": "#5e5e5e",
           "style": "plain",
           "template": "  ",
           "type": "text"
         },
         {
-          "background": "#000000",
+          "background": "#222222",
           "foreground": "#ffffff",
           "style": "plain",
           "template": " \uf0e7 ",
           "type": "root"
         },
         {
-          "background": "#000000",
+          "background": "#222222",
           "foreground": "#275a94",
           "properties": {
             "style": "agnoster_short"
@@ -50,7 +50,7 @@
           "type": "path"
         },
         {
-          "background": "#000000",
+          "background": "#222222",
           "foreground": "#5e5e5e",
           "style": "plain",
           "template": "",
@@ -58,12 +58,12 @@
         },
         {
           "foreground": "#227c16",
-          "background": "#000000",
+          "background": "#222222",
           "foreground_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#49134b{{ end }}",
-            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#49134b{{ end }}",
-            "{{ if gt .Ahead 0 }}#6445b8{{ end }}",
-            "{{ if gt .Behind 0 }}#49134b{{ end }}"
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#641c1c{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#641c1c{{ end }}",
+            "{{ if gt .Ahead 0 }}#641c1c{{ end }}",
+            "{{ if gt .Behind 0 }}#641c1c{{ end }}"
           ],
           "properties": {
             "fetch_stash_count": true,
@@ -76,7 +76,7 @@
         },
         {
           "background": "transparent",
-          "foreground": "#000000",
+          "foreground": "#222222",
           "style": "plain",
           "template": "▓▒░",
           "type": "text"
@@ -90,13 +90,13 @@
       "segments": [
         {
           "background": "transparent",
-          "foreground": "#000000",
+          "foreground": "#222222",
           "style": "plain",
           "template": "░▒▓",
           "type": "text"
         },
         {
-          "background": "#000000",
+          "background": "#222222",
           "foreground": "#275a94",
           "leading_diamond": "░▒▓",
           "properties": {
@@ -110,7 +110,7 @@
           "background": "transparent",
           "foreground": "#5e5e5e",
           "style": "plain",
-          "template": "<#000000>▓▒░</>─╮",
+          "template": "<#222222>▓▒░</>─╮",
           "type": "text"
         }
       ],
@@ -129,10 +129,10 @@
           "type": "text"
         },
         {
-          "background": "#000000",
+          "background": "#222222",
           "foreground": "#641c1c",
           "foreground_templates": [
-            "{{ if contains \"dev\" .Context }}#503697{{ end }}"
+            "{{ if contains \"docker\" .Context }}#503697{{ end }}"
           ],
           "leading_diamond": "░▒▓",
           "trailing_diamond": "▓▒░",
@@ -146,18 +146,19 @@
     },
     {
       "alignment": "right",
-      "filler": "<#000000>░</>",
       "segments": [
         {
           "background": "transparent",
-          "foreground": "#000000",
+          "foreground": "#222222",
           "style": "plain",
           "template": "░▒▓",
-          "type": "text"
+          "type": "az"
         },
         {
-          "background": "#000000",
+          "background": "#222222",
           "foreground": "#503697",
+          "leading_diamond": "░▒▓",
+          "trailing_diamond": "▓▒░",
           "style": "powerline",
           "template": " \uebd8 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
           "type": "az"
@@ -166,7 +167,14 @@
           "background": "transparent",
           "foreground": "#5e5e5e",
           "style": "plain",
-          "template": "<#000000>▓▒░</>─┤",
+          "template": "<#222222>▓▒░</>",
+          "type": "az"
+        },
+        {
+          "background": "transparent",
+          "foreground": "#5e5e5e",
+          "style": "plain",
+          "template": "─┤",
           "type": "text"
         }
       ],
@@ -204,9 +212,8 @@
   ],
   "version": 2,
   "transient_prompt": {},
-    "background": "#000000",
+    "background": "#222222",
     "foreground": "#5e5e5e",
-    "template": "❯",
-    "filler": "─"
+    "template": ">> {{ .Prompt }} "
 }
 

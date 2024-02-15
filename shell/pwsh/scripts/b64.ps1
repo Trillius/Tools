@@ -20,7 +20,10 @@
     Ensure that when decoding, the input string is a valid Base64 encoded string, 
     otherwise, the script will throw an error.
     To use the command b64, add the alias b64 to the current user powershell profile (adjust path as necessary):
-    Set-Alias -Name b64 -Value "$($env:UserProfile)\b64.ps1"
+    1 - Edit your ps profile
+            code $profile
+    2 - add this line: 
+            Set-Alias -Name b64 -Value "$($env:UserProfile)\b64.ps1"
 .LINK
     https://learn.microsoft.com/en-us/dotnet/api/system.convert.tobase64string?view=net-8.0
 #>

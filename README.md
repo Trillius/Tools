@@ -28,6 +28,10 @@ In this section we cover customizing the terminal looks for windows and linux:
    ```powershell
    "$($env:USERPROFILE)\Tools\pwsh\setup.ps1"
    ```
+
+#### How it looks:
+![Powershell with oh-my-posh](docs\pwsh.png "PWSH")
+
 ### [📚 Zsh]()
 
 #### Requirements
@@ -52,6 +56,9 @@ In this section we cover customizing the terminal looks for windows and linux:
    ```bash
    ~\Tools\zsh\setup.sh
    ```
+
+#### How it looks:
+![zsh with oh-my-zsh](docs\zsh.png "ZSH")
 
 
 
