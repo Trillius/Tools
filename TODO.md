@@ -18,7 +18,7 @@
 - [📚 tmux-copycat](https://github.com/tmux-plugins/tmux-copycat)
 - [📚 tmux-sidebar](https://github.com/tmux-plugins/tmux-sidebar)
 
-## customizations
+## stuff
 ### Add Theme options 
  - weather
  - resources
@@ -28,4 +28,6 @@
 
 ## fix theme colors PWSH
  - too dull
+
+## create new docker files
 
