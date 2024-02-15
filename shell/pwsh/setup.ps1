@@ -1,6 +1,6 @@
 
 #set working variables
-$env:DEV_POSH_FONTS_PATH = "$env:USERPROFILE\Tools\shell\pwsh\fonts"
+$env:DEV_POSH_FONTS_PATH = "$env:USERPROFILE\Tools\shell\fonts"
 
 # get dependencies
 Install-Module -Name winget

@@ -1,3 +1,4 @@
+
 Import-Module -Name Terminal-Icons
 Import-Module -Name posh-git
 Import-Module -Name posh-docker
