@@ -1,0 +1,1 @@
+Set-Alias -Name b64 -Value "$($env:DEV_POSH_SCRIPTS_PATH)\b64.ps1"
