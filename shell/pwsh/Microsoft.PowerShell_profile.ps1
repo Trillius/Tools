@@ -11,6 +11,7 @@ $env:VIRTUAL_ENV_DISABLE_PROMPT = 0
 $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 $env:DEV_POSH_THEMES_PATH = "$env:USERPROFILE\Tools\shell\pwsh\themes"
 $env:DEV_POSH_ALIASES_PATH = "$env:USERPROFILE\Tools\shell\pwsh\aliases"
+$env:DEV_POSH_SCRIPTS_PATH = "$env:USERPROFILE\Tools\shell\pwsh\scripts"
 
 #import dependencies
 Import-Module -Name Terminal-Icons
@@ -23,6 +24,7 @@ Import-Module -Name posh-azure
 Get-ChildItem $env:DEV_POSH_ALIASES_PATH | ForEach-Object {
     & $_.FullName
 }
+
 #set PS readline options
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
