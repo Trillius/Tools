@@ -11,9 +11,11 @@ In this section we cover customizing the terminal looks for windows and linux:
 #### Requirements
 - For powershell we use oh-my-posh in combination with some extensions
 - theme: powerlevel10k_custom
+  - `$($env:USERPROFILE)/Tools/shell/pwsh/themes/powerlevel10k_classic_custom.omp.json`
 - font: MesloLGS NF Regular
 - Use the template profile
-  - ```./pwsh/profiles```
+  - ```$($env:USERPROFILE)/Tools/shell/pwsh/profiles/Microsoft.PowerShell_profile.ps1```
+  - ```$($env:USERPROFILE)/Tools/shell/pwsh/profiles/Microsoft.VSCode_profile.ps1```
   - (❗TODO: script template profile install)
 
 #### Instalation
@@ -37,7 +39,7 @@ In this section we cover customizing the terminal looks for windows and linux:
    - (❗TODO: script font install)
  - Use the template profile 
  
-   - ```./zsh/profiles```
+   - ```~/Tools/shell/zsh/profiles```
    - (❗TODO: script template profile install)
 
 #### Instalation
