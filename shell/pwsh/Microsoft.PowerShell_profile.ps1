@@ -1,24 +1,38 @@
-$env:POSH_AZURE_ENABLED = $true
+<############### Start of PowerTab Initialization Code ########################
+    Added to profile by PowerTab setup for loading of custom tab expansion.
+    Import other modules after this, they may contain PowerTab integration.
+#>
 
+Import-Module "PowerTab" -ArgumentList "$env:USERPROFILE\Documents\WindowsPowerShell\PowerTabConfig.xml"
+################ End of PowerTab Initialization Code ##########################
+
+# set working variables
+$env:VIRTUAL_ENV_DISABLE_PROMPT = 0
+$env:VIRTUAL_ENV_DISABLE_PROMPT = 1
+$env:DEV_POSH_THEMES_PATH = "$env:USERPROFILE\Tools\shell\pwsh\themes"
+$env:DEV_POSH_ALIASES_PATH = "$env:USERPROFILE\Tools\shell\pwsh\aliases"
+
+#import dependencies
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSReadLine
 Import-Module -Name posh-git
-Import-Module -Name posh-azure
 Import-Module -Name posh-docker
+Import-Module -Name posh-azure
 
-#Set alias
-Set-Alias -Name k -Value kubectl
-Set-Alias -Name k9s -Value "$($env:UserProfile)\.psComm\k9s.exe"
-Set-Alias -Name b64 -Value "$($env:UserProfile)\.psComm\b64.ps1"
-
+#set aliases from files
+Get-ChildItem $env:DEV_POSH_ALIASES_PATH | ForEach-Object {
+    & $_.FullName
+}
+#set PS readline options
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
+# Shows navigable menu of all options when hitting Tab
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+
+# Autocompletion for arrow keys
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-#oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/cloud-native-azure-custom.omp.json" | Invoke-Expression
-
-oh-my-posh init pwsh --config $env:POSH_THEMES_PATH/powerlevel10k_classic.omp.json | Invoke-Expression
-
+#Init theme
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\powerlevel10k_classic_custom.omp.json" | Invoke-Expression
