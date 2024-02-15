@@ -6,7 +6,7 @@
 ## Shell customizations
 
 In this section we cover customizing the terminal looks for windows and linux:
-### [💻 Powershell](shell/pwsh/PWSH_README.md)
+### [💻 Powershell]()
 
 #### Requirements
 - For powershell we use oh-my-posh in combination with some extensions
@@ -28,7 +28,7 @@ In this section we cover customizing the terminal looks for windows and linux:
    ```powershell
    "$($env:USERPROFILE)\Tools\pwsh\setup.ps1"
    ```
-### [📚 Zsh](shell/Zsh/ZSH_README.md)
+### [📚 Zsh]()
 
 #### Requirements
  - For zsh we use oh-my-zsh in combination with some extensions
