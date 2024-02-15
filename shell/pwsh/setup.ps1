@@ -11,7 +11,7 @@ Install-Module -Name posh-azure
 Install-Module -Name posh-git
 Install-Module -Name posh-docker
 #install oh-my-posh
-#winget install JanDeDobbeleer.OhMyPosh -s winget
+winget install JanDeDobbeleer.OhMyPosh -s winget
 
 #install fonts
 $FontList = Get-ChildItem -Path $env:DEV_POSH_FONTS_PATH -Include '*.fon', '*.otf', '*.ttc', '*.ttf'
