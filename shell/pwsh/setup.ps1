@@ -10,6 +10,7 @@ Install-Module -Name PSReadLine -Force
 Install-Module -Name posh-azure
 Install-Module -Name posh-git
 Install-Module -Name posh-docker
+
 #install oh-my-posh
 winget install JanDeDobbeleer.OhMyPosh -s winget
 
