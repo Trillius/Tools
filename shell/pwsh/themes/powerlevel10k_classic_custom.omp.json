@@ -34,7 +34,7 @@
         },
         {
           "background": "#222222",
-          "foreground": "#ffffff",
+          "foreground": "#8d8d8d",
           "style": "plain",
           "template": " \uf0e7 ",
           "type": "root"
@@ -114,7 +114,6 @@
       "alignment": "left",
       "newline": true,
       "segments": [
-        
         {
           "background": "transparent",
           "foreground": "#5e5e5e",
@@ -132,7 +131,6 @@
           "trailing_diamond": "▓▒░",
           "style": "diamond",
           "template": " \uf308 Kubernetes {{.Context}} cluster {{if .Namespace}}- {{.Namespace}} namespace{{end}} ",
-
           "type": "kubectl"
         }
       ],
@@ -141,10 +139,9 @@
     {
       "alignment": "right",
       "segments": [
-
         {
           "background": "#222222",
-          "foreground": "#503697",
+          "foreground": "#b097f7",
           "leading_diamond": "░▒▓",
           "trailing_diamond": "▓▒░",
           "style": "diamond",
@@ -189,12 +186,11 @@
       ],
       "type": "rprompt"
     }
-
   ],
   "version": 2,
-  "transient_prompt": {},
-    "background": "#222222",
+  "transient_prompt": {
+    "background": "transparent",
     "foreground": "#5e5e5e",
-    "template": ">> {{ .Prompt }} "
+    "template": "<#275a94>\uf489</> "
+  }
 }
-
