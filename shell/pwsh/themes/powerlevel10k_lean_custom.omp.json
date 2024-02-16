@@ -47,7 +47,7 @@
           "foreground": "#5e5e5e",
           "style": "plain",
           "template": "",
-          "type": "text"
+          "type": "git"
         },
         {
           "foreground": "#227c16",
