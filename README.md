@@ -5,7 +5,6 @@
 
 ## Shell customizations
 
-In this section we cover customizing the terminal looks for windows and linux:
 ### [💻 Powershell]()
 
 #### Requirements
@@ -18,7 +17,7 @@ In this section we cover customizing the terminal looks for windows and linux:
   - ```$($env:USERPROFILE)/Tools/shell/pwsh/profiles/Microsoft.VSCode_profile.ps1```
   - (❗TODO: script template profile install)
 
-#### Instalation
+#### Installation
 1. Clone the repo:
    ```powershell
    git clone "https://github.com/Trillius/Tools" "$($env:USERPROFILE)/Tools"
