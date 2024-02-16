@@ -5,11 +5,10 @@
 
 ## Shell customizations
 
-In this section we cover customizing the terminal looks for windows and linux:
 ### [💻 Powershell]()
 
 #### Requirements
-- For powershell we use oh-my-posh in combination with some extensions
+- For Powershell we use oh-my-posh in combination with some extensions
 - theme: powerlevel10k_custom
   - `$($env:USERPROFILE)/Tools/shell/pwsh/themes/powerlevel10k_classic_custom.omp.json`
 - font: MesloLGS NF Regular
@@ -18,10 +17,10 @@ In this section we cover customizing the terminal looks for windows and linux:
   - ```$($env:USERPROFILE)/Tools/shell/pwsh/profiles/Microsoft.VSCode_profile.ps1```
   - (❗TODO: script template profile install)
 
-#### Instalation
+#### Installation
 1. Clone the repo:
    ```powershell
-   git clone "https://github.com/Trillius/Tools" "$($env:USERPROFILE)/Tools
+   git clone "https://github.com/Trillius/Tools" "$($env:USERPROFILE)/Tools"
    ```
    
 2. Run the setup script:
@@ -35,18 +34,17 @@ In this section we cover customizing the terminal looks for windows and linux:
 ### [📚 Zsh]()
 
 #### Requirements
- - For zsh we use oh-my-zsh in combination with some extensions
-   - (❗TODO: script extension isntall)
+ - For ZSH we use oh-my-zsh in combination with some extensions
+   - (❗TODO: script extension install)
  - theme: powerlevel10k
- - this theme will guide you through the prefrences setup
+   - this theme will guide you through the preferred setup
  - font: MesloLGS NF Regular
    - (❗TODO: script font install)
  - Use the template profile 
  
    - ```~/Tools/shell/zsh/profiles```
    - (❗TODO: script template profile install)
-
-#### Instalation
+#### Installation
 1. Clone the repo:
    ```bash
    git clone https://github.com/Trillius/Tools ~/Tools
