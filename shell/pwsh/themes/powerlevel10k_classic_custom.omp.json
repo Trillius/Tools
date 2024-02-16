@@ -46,7 +46,7 @@
             "style": "agnoster_short"
           },
           "style": "plain",
-          "template": " {{ .Path }} ",
+          "template": "{{ if eq .Folder .UserName }}{{ else if eq .Folder \"Tools\" }}\udb84\udf54{{ else }}{{ end }} {{ .Path }} ",
           "type": "path"
         },
         {
@@ -190,7 +190,7 @@
   "version": 2,
   "transient_prompt": {
     "background": "transparent",
-    "foreground": "#5e5e5e",
-    "template": "<#275a94>\uf489</>  "
+    "foreground": "#275a94",
+    "template": "\uf489  "
   }
 }
