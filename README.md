@@ -8,7 +8,7 @@
 ### [💻 Powershell]()
 
 #### Requirements
-- For powershell we use oh-my-posh in combination with some extensions
+- For Powershell we use oh-my-posh in combination with some extensions
 - theme: powerlevel10k_custom
   - `$($env:USERPROFILE)/Tools/shell/pwsh/themes/powerlevel10k_classic_custom.omp.json`
 - font: MesloLGS NF Regular
@@ -34,7 +34,7 @@
 ### [📚 Zsh]()
 
 #### Requirements
- - For zsh we use oh-my-zsh in combination with some extensions
+ - For ZSH we use oh-my-zsh in combination with some extensions
    - (❗TODO: script extension install)
  - theme: powerlevel10k
    - this theme will guide you through the preferred setup
