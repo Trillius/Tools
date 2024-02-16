@@ -131,7 +131,7 @@
           "leading_diamond": "░▒▓",
           "trailing_diamond": "▓▒░",
           "style": "diamond",
-          "template": " \uf308 Kubernetes {{.Context}} cluster {{if .Namespace}}- {{.Namespace}} namespace{{end}} ",
+          "template": " \uf308 {{.Context}} {{if .Namespace}}- {{.Namespace}} namespace{{end}} ",
           "type": "kubectl"
         }
       ],
@@ -146,7 +146,7 @@
           "leading_diamond": "░▒▓",
           "trailing_diamond": "▓▒░",
           "style": "diamond",
-          "template": " \uebd8 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
+          "template": " \uebd8  {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
           "type": "az"
         },
         {
