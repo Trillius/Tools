@@ -2,5 +2,5 @@ param(
     [Parameter(Mandatory = $false)]
     [string]$str
 )
-pwd | dir | ? {$_.Name -match $str}
+pwd | ls | ? {$_.Name -match $str}
  
