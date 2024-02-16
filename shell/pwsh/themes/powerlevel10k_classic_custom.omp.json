@@ -191,6 +191,6 @@
   "transient_prompt": {
     "background": "transparent",
     "foreground": "#5e5e5e",
-    "template": "<#275a94>\uf489</> "
+    "template": "<#275a94>\uf489</>  "
   }
 }
