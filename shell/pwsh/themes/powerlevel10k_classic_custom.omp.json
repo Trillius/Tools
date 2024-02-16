@@ -89,20 +89,14 @@
       "filler": "─",
       "segments": [
         {
-          "background": "transparent",
-          "foreground": "#222222",
-          "style": "plain",
-          "template": "░▒▓",
-          "type": "text"
-        },
-        {
           "background": "#222222",
           "foreground": "#275a94",
           "leading_diamond": "░▒▓",
+          "trailing_diamond": "▓▒░",
           "properties": {
             "time_format": "15:04:05"
           },
-          "style": "plain",
+          "style": "diamond",
           "template": " {{ .CurrentDate | date .Format }} \uf017 ",
           "type": "time"
         },
@@ -110,7 +104,7 @@
           "background": "transparent",
           "foreground": "#5e5e5e",
           "style": "plain",
-          "template": "<#222222>▓▒░</>─╮",
+          "template": "─╮",
           "type": "text"
         }
       ],
@@ -147,27 +141,14 @@
     {
       "alignment": "right",
       "segments": [
-        {
-          "background": "transparent",
-          "foreground": "#222222",
-          "style": "plain",
-          "template": "░▒▓",
-          "type": "az"
-        },
+
         {
           "background": "#222222",
           "foreground": "#503697",
           "leading_diamond": "░▒▓",
           "trailing_diamond": "▓▒░",
-          "style": "powerline",
+          "style": "diamond",
           "template": " \uebd8 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
-          "type": "az"
-        },
-        {
-          "background": "transparent",
-          "foreground": "#5e5e5e",
-          "style": "plain",
-          "template": "<#222222>▓▒░</>",
           "type": "az"
         },
         {
