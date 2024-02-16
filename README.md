@@ -30,7 +30,7 @@ In this section we cover customizing the terminal looks for windows and linux:
    ```
 
 #### How it looks:
-![Powershell with oh-my-posh](docs\pwsh.png "PWSH")
+![Powershell with oh-my-posh](docs/pwsh.png "PWSH")
 
 ### [📚 Zsh]()
 
@@ -58,7 +58,7 @@ In this section we cover customizing the terminal looks for windows and linux:
    ```
 
 #### How it looks:
-![zsh with oh-my-zsh](docs\zsh.png "ZSH")
+![zsh with oh-my-zsh](docs/zsh.png "ZSH")
 
 
 
