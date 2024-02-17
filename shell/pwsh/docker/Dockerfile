@@ -24,10 +24,13 @@ RUN pwsh -Command Install-Module -Name PSReadLine -Force
 RUN pwsh -Command Install-Module -Name posh-azure -Force
 RUN pwsh -Command Install-Module -Name posh-git -Force
 RUN pwsh -Command Install-Module -Name posh-docker -Force
-RUN mkdir $HOME/Tools
-RUN git clone https://github.com/Trillius/Tools.git /home/root/Tools
-RUN mkdir $HOME/.config/powershell
 
-RUN cp /home/root/Tools/shell/pwsh/docker/Microsoft.PowerShell_profile.ps1 /root/.config/powershell
-RUN pwsh -Command . $PROFILE
+RUN mkdir $HOME/Tools \
+&& git clone https://github.com/Trillius/Tools.git $HOME/Tools \
+&& ls $HOME/Tools \
+&& mkdir /root/.config/powershell \
+&& ls $HOME/Tools/shell/pwsh/docker/ \
+&& cp $HOME/Tools/shell/pwsh/docker/Microsoft.PowerShell_profile.ps1 /root/.config/powershell 
+
+RUN pwsh -Interactive $false -Command ". $PROFILE"
 RUN pwsh
