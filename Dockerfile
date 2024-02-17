@@ -45,9 +45,6 @@ RUN sed -i "s/plugins=.*$/plugins=(git kubectl zsh-autosuggestions zsh-syntax-hi
 RUN echo "source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 RUN echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 
-# Start the zsh shell when a container is run
-CMD [ "zsh" ]
-
 RUN . /etc/os-release \
 && wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
 && dpkg -i packages-microsoft-prod.deb \
@@ -59,8 +56,6 @@ RUN apt-get install -y powershell
 RUN curl -s https://ohmyposh.dev/install.sh | bash -s --
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash -s --
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-#RUN chmod +x install.sh
-#RUN ./install.sh
  
 RUN pwsh -Command Install-Module -Name Terminal-Icons -Force
 RUN pwsh -Command Install-Module -Name PSReadLine -Force
@@ -71,12 +66,12 @@ RUN pwsh -Command Install-Module -Name posh-git -Force
 RUN pwsh -Command Install-Module -Name posh-docker -Force
 RUN pwsh -Command Update-Help
 
-
-
-RUN git clone https://github.com/Trillius/Tools.git ~/Tools \
-&& mkdir ~/.config/powershell \
-&& ls ~/Tools/shell/pwsh/profiles/ \
-&& cp ~/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 /root/.config/powershell/Microsoft.PowerShell_profile.ps1 \
-$$ yes | cp -rf  ~/Tools/shell/zsh/profiles/* ~ \
+RUN cd ~ \
+&& git clone https://github.com/Trillius/Tools.git ~/Tools \
+&& ls ~/Tools \
+&& mkdir ~/.config/powershell/ \
+&& cp -rf ~/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 ~/.config/powershell/ \
+&& cp -rf ~/Tools/shell/zsh/profiles/ ~/
+RUN mv "/root/.config/powershell/docker-Microsoft.PowerShell_profile.ps1" "/root/.config/powershell/Microsoft.PowerShell_profile.ps1"
 RUN pwsh -Command /root/.config/powershell/Microsoft.PowerShell_profile.ps1
-RUN pwsh
+CMD [ "pwsh" ]

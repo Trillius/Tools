@@ -3,7 +3,7 @@
     Import other modules after this, they may contain PowerTab integration.
 #>
 
-Import-Module "PowerTab" -ArgumentList "$($env:USERPROFILE)\Documents\WindowsPowerShell\PowerTabConfig.xml"
+Import-Module "PowerTab" -ArgumentList "/root/.PowerTabConfig.xml"
 ################ End of PowerTab Initialization Code ##########################
 
 # set working variables
