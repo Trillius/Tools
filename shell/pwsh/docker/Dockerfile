@@ -19,7 +19,7 @@ RUN curl -s https://ohmyposh.dev/install.sh | bash -s --
  
 RUN pwsh -Command Install-Module -Name Terminal-Icons -Force
 RUN pwsh -Command Install-Module -Name PSReadLine -Force
-RUN pwsh -Command Install-Module -Name PowerTab -Force
+#RUN pwsh -Command Install-Module -Name PowerTab -Force
 RUN pwsh -Command Install-Module -Name PSReadLine -Force
 RUN pwsh -Command Install-Module -Name posh-azure -Force
 RUN pwsh -Command Install-Module -Name posh-git -Force
@@ -29,8 +29,8 @@ RUN mkdir $HOME/Tools \
 && git clone https://github.com/Trillius/Tools.git $HOME/Tools \
 && ls $HOME/Tools \
 && mkdir /root/.config/powershell \
-&& ls $HOME/Tools/shell/pwsh/docker/ \
-&& cp $HOME/Tools/shell/pwsh/docker/Microsoft.PowerShell_profile.ps1 /root/.config/powershell 
+&& ls $HOME/Tools/shell/pwsh/profiles/ \
+&& cp $HOME/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 /root/.config/powershell/Microsoft.PowerShell_profile.ps1
 
 RUN pwsh -Interactive $false -Command ". $PROFILE"
 RUN pwsh
