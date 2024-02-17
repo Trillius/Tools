@@ -73,6 +73,6 @@ RUN cd ~ \
 && cp -rf ~/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 ~/.config/powershell/ \
 && cp -rf ~/Tools/shell/pwsh/profiles/PowerTabConfig.xml ~/.config/powershell/ \
 && cp -rf ~/Tools/shell/zsh/profiles/ ~/
-RUN mv "~/.config/powershell/docker-Microsoft.PowerShell_profile.ps1" "~/.config/powershell/Microsoft.PowerShell_profile.ps1"
-RUN pwsh -Command /root/.config/powershell/Microsoft.PowerShell_profile.ps1
+RUN mv ~/.config/powershell/docker-Microsoft.PowerShell_profile.ps1 ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+RUN pwsh -Command ~/.config/powershell/Microsoft.PowerShell_profile.ps1
 CMD [ "pwsh" ]
