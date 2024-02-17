@@ -22,7 +22,13 @@ Import-Module -Name posh-azure
 
 #set aliases from files
 Get-ChildItem $env:DEV_POSH_ALIASES_PATH | ForEach-Object {
-    & $_.FullName
+    Try {
+        . $_.FullName
+        Write-Host "Imported $($_.FullName)"
+    }
+    Catch {
+        Write-Error "Failed to execute $_.FullName: $_"
+    }
 }
 
 #set PS readline options
