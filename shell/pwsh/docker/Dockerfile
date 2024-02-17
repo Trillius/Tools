@@ -32,5 +32,5 @@ RUN mkdir $HOME/Tools \
 && ls $HOME/Tools/shell/pwsh/profiles/ \
 && cp $HOME/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 /root/.config/powershell/Microsoft.PowerShell_profile.ps1
 
-RUN pwsh -Interactive $false -Command ". $PROFILE"
+RUN pwsh -Command /root/.config/powershell/Microsoft.PowerShell_profile.ps1
 RUN pwsh
