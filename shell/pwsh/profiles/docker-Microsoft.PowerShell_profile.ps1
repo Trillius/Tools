@@ -3,15 +3,15 @@
     Import other modules after this, they may contain PowerTab integration.
 #>
 
-#Import-Module "PowerTab" -ArgumentList "$($env:USERPROFILE)\Documents\WindowsPowerShell\PowerTabConfig.xml"
+Import-Module "PowerTab" -ArgumentList "$($env:USERPROFILE)\Documents\WindowsPowerShell\PowerTabConfig.xml"
 ################ End of PowerTab Initialization Code ##########################
 
 # set working variables
 $env:VIRTUAL_ENV_DISABLE_PROMPT = 0
 $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
-$env:DEV_POSH_THEMES_PATH = "$HOME/Tools/shell/pwsh/themes"
-$env:DEV_POSH_ALIASES_PATH = "$HOME/Tools/shell/pwsh/aliases"
-$env:DEV_POSH_SCRIPTS_PATH = "$HOME/Tools/shell/pwsh/scripts"
+$env:DEV_POSH_THEMES_PATH = "~/Tools/shell/pwsh/themes"
+$env:DEV_POSH_ALIASES_PATH = "~/Tools/shell/pwsh/aliases"
+$env:DEV_POSH_SCRIPTS_PATH = "~/Tools/shell/pwsh/scripts"
 
 #import dependencies
 Import-Module -Name Terminal-Icons
@@ -31,7 +31,15 @@ Get-ChildItem $env:DEV_POSH_ALIASES_PATH | ForEach-Object {
     }
 }
 
-
+#set PS readline options
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineOption -EditMode Windows
+# Shows navigable menu of all options when hitting Tab
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+# Autocompletion for arrow keys
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 #Init theme
 oh-my-posh init pwsh --config "$($env:DEV_POSH_THEMES_PATH)\powerlevel10k_classic_custom.omp.json" | Invoke-Expression

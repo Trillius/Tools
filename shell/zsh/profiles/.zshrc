@@ -18,7 +18,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
+# Setting this variable when ZSH_THEME="powerlevel10k/powerlevel10k"
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "powerlevel10k/powerlevel10k" "agnoster" )
@@ -75,18 +75,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
+# Example format: plugins=(git kubectl zsh-autosuggestions zsh-syntax-highlighting)
 # Add wisely, as too many plugins slow down shell startup.
-#plugins=(auto-notify $plugins)
-plugins=(
-    git
-)
+plugins=( git kubectl zsh-autosuggestions zsh-syntax-highlighting )
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 export AUTO_NOTIFY_THRESHOLD=10
-export AUTO_NOTIFY_IGNORE=("code" "nano" "vim" "ssh" "htop" "top" "docker")
+export AUTO_NOTIFY_IGNORE=("code" "nano" "vim" "ssh" "htop" "top")
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -111,19 +108,12 @@ export AUTO_NOTIFY_IGNORE=("code" "nano" "vim" "ssh" "htop" "top" "docker")
 alias ll="logo-ls -al"
 alias src="source ~/.zshrc"
 alias zshconfig="code ~/.zshrc"
-#alias notify-send="/mnt/c/Users/luisa/wsl-notify-send.exe"
 lsd(){ ll $1 | grep "^d"; } 
 jcurl(){ curl $1 | pp_json; }
 
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ohmyzsh="mate ~/.oh-my-zsh"
-plugins=(
-    zsh-autosuggestions
-    zsh-autosuggestions
-    jsontools
-)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#source ~/.oh-my-zsh/custom/plugins/zsh-auto-notify/zsh-auto-notify.zsh
-#source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source ~/.oh-my-zsh/custom/plugins/jsontools/jsontools.plugin.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

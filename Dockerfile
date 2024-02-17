@@ -1,9 +1,17 @@
 # syntax=docker/dockerfile:1
 FROM mcr.microsoft.com/powershell:preview
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
+ENV TERM=xterm-256color
+ENV TERM=screen-256color
+
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update
 RUN apt-get install -y wget apt-transport-https software-properties-common apt-utils curl unzip
 RUN apt-get install -y git
+RUN apt-get install openssh-server python3.11 -y
+RUN apt-get install openssh-server -y
 RUN apt-get install -y \
     nano \
     net-tools \
@@ -14,17 +22,10 @@ RUN apt-get install -y \
     zsh \
     tmux
 
-# Install oh-my-zsh
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-#RUN chsh -s /bin/zsh
-
-# powerlevel10k theme for oh-my-zsh
 RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k || true
-
-# auto suggestions
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
-# highlight
 RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 # logo-ls
@@ -34,7 +35,7 @@ RUN cd ~ \
 && cp ~/logo-ls_Linux_x86_64/logo-ls /usr/local/bin \
 && cp ~/logo-ls_Linux_x86_64/logo-ls.1.gz /usr/share/man/man1/ \
 && rm -rf ~/logo-ls_Linux_* \
-&& echo "alias lo=logo-ls" >> ~/.zshrc
+&& echo "alias ll=logo-ls -al" >> ~/.zshrc
 
 # set the theme
 RUN sed -i "s/ZSH_THEME=.*$/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/" ~/.zshrc
@@ -63,7 +64,7 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
  
 RUN pwsh -Command Install-Module -Name Terminal-Icons -Force
 RUN pwsh -Command Install-Module -Name PSReadLine -Force
-#RUN pwsh -Command Install-Module -Name PowerTab -Force
+RUN pwsh -Command Install-Module -Name PowerTab -Force
 RUN pwsh -Command Install-Module -Name PSReadLine -Force
 RUN pwsh -Command Install-Module -Name posh-azure -Force
 RUN pwsh -Command Install-Module -Name posh-git -Force
@@ -71,11 +72,11 @@ RUN pwsh -Command Install-Module -Name posh-docker -Force
 RUN pwsh -Command Update-Help
 
 
-RUN mkdir $HOME/Tools \
-&& git clone https://github.com/Trillius/Tools.git $HOME/Tools \
-&& ls $HOME/Tools \
-&& mkdir /root/.config/powershell \
-&& ls $HOME/Tools/shell/pwsh/profiles/ \
-&& cp $HOME/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 /root/.config/powershell/Microsoft.PowerShell_profile.ps1
+
+RUN git clone https://github.com/Trillius/Tools.git ~/Tools \
+&& mkdir ~/.config/powershell \
+&& ls ~/Tools/shell/pwsh/profiles/ \
+&& cp ~/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 /root/.config/powershell/Microsoft.PowerShell_profile.ps1 \
+$$ yes | cp -rf  ~/Tools/shell/zsh/profiles/* ~ \
 RUN pwsh -Command /root/.config/powershell/Microsoft.PowerShell_profile.ps1
 RUN pwsh
