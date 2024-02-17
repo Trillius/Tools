@@ -4,6 +4,48 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN apt-get update
 RUN apt-get install -y wget apt-transport-https software-properties-common apt-utils curl unzip
 RUN apt-get install -y git
+RUN apt-get install -y \
+    nano \
+    net-tools \
+    libicu-dev \
+    iputils-ping \
+    dnsutils \
+    strace \
+    zsh \
+    tmux
+
+# Install oh-my-zsh
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+#RUN chsh -s /bin/zsh
+
+# powerlevel10k theme for oh-my-zsh
+RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k || true
+
+# auto suggestions
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+# highlight
+RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+# logo-ls
+RUN cd ~ \
+&& wget -q https://github.com/Yash-Handa/logo-ls/releases/download/v1.3.7/logo-ls_Linux_x86_64.tar.gz \
+&& tar -xzf logo-ls_Linux_x86_64.tar.gz \
+&& cp ~/logo-ls_Linux_x86_64/logo-ls /usr/local/bin \
+&& cp ~/logo-ls_Linux_x86_64/logo-ls.1.gz /usr/share/man/man1/ \
+&& rm -rf ~/logo-ls_Linux_* \
+&& echo "alias lo=logo-ls" >> ~/.zshrc
+
+# set the theme
+RUN sed -i "s/ZSH_THEME=.*$/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/" ~/.zshrc
+
+# register plugins
+RUN sed -i "s/plugins=.*$/plugins=(git kubectl zsh-autosuggestions zsh-syntax-highlighting)/" ~/.zshrc
+RUN echo "source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+RUN echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+
+# Start the zsh shell when a container is run
+CMD [ "zsh" ]
 
 RUN . /etc/os-release \
 && wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
@@ -14,6 +56,8 @@ RUN apt-get update
 RUN apt-get install -y powershell
 
 RUN curl -s https://ohmyposh.dev/install.sh | bash -s --
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash -s --
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 #RUN chmod +x install.sh
 #RUN ./install.sh
  
@@ -24,6 +68,8 @@ RUN pwsh -Command Install-Module -Name PSReadLine -Force
 RUN pwsh -Command Install-Module -Name posh-azure -Force
 RUN pwsh -Command Install-Module -Name posh-git -Force
 RUN pwsh -Command Install-Module -Name posh-docker -Force
+RUN pwsh -Command Update-Help
+
 
 RUN mkdir $HOME/Tools \
 && git clone https://github.com/Trillius/Tools.git $HOME/Tools \
@@ -31,6 +77,5 @@ RUN mkdir $HOME/Tools \
 && mkdir /root/.config/powershell \
 && ls $HOME/Tools/shell/pwsh/profiles/ \
 && cp $HOME/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 /root/.config/powershell/Microsoft.PowerShell_profile.ps1
-
 RUN pwsh -Command /root/.config/powershell/Microsoft.PowerShell_profile.ps1
 RUN pwsh
