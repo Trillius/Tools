@@ -6,12 +6,24 @@ ENV TZ=UTC
 ENV TERM=xterm-256color
 ENV TERM=screen-256color
 
+RUN useradd -rm -d /home/lab -s /bin/zsh -g root -G sudo -u 1000 lab  \
+    echo 'root:root' | chpasswd \
+    echo 'lab:lab' | chpasswd \
+    chsh --shell /bin/zsh root \
+    chsh --shell /bin/zsh lab
+
+RUN mkdir /var/run/sshd && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \
+    echo "export VISIBLE=now" >> /etc/profile
+
+USER root
+
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update
 RUN apt-get install -y wget apt-transport-https software-properties-common apt-utils curl unzip
 RUN apt-get install -y git
 RUN apt-get install openssh-server python3.11 -y
-RUN apt-get install openssh-server -y
 RUN apt-get install -y \
     nano \
     net-tools \
@@ -21,6 +33,8 @@ RUN apt-get install -y \
     strace \
     zsh \
     tmux
+
+USER lab 
 
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k || true
@@ -67,12 +81,16 @@ RUN pwsh -Command Install-Module -Name posh-docker -Force
 RUN pwsh -Command Update-Help
 
 RUN cd ~ \
-&& git clone https://github.com/Trillius/Tools.git ~/Tools \
-&& ls ~/Tools \
-&& mkdir ~/.config/powershell/ \
-&& cp -rf ~/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 ~/.config/powershell/ \
-&& cp -rf ~/Tools/shell/pwsh/profiles/PowerTabConfig.xml ~/.config/powershell/ \
-&& cp -rf ~/Tools/shell/zsh/profiles/ ~/
+   git clone https://github.com/Trillius/Tools.git ~/Tools && \
+   ls ~/Tools \
+   mkdir ~/.config/powershell/ \
+   cp -rf ~/Tools/shell/pwsh/profiles/docker-Microsoft.PowerShell_profile.ps1 ~/.config/powershell/ \
+   cp -rf ~/Tools/shell/pwsh/profiles/PowerTabConfig.xml ~/.config/powershell/ \
+   cp -rf ~/Tools/shell/zsh/profiles/ ~/
+
 RUN mv ~/.config/powershell/docker-Microsoft.PowerShell_profile.ps1 ~/.config/powershell/Microsoft.PowerShell_profile.ps1
 RUN pwsh -Command ~/.config/powershell/Microsoft.PowerShell_profile.ps1
-CMD [ "pwsh" ]
+
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd", "-D"]

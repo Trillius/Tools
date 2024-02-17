@@ -17,7 +17,7 @@
   - ```$($env:USERPROFILE)/Tools/shell/pwsh/profiles/Microsoft.VSCode_profile.ps1```
   - (❗TODO: script template profile install)
 
-#### Installation
+#### Local Installation
 1. Clone the repo:
    ```powershell
    git clone "https://github.com/Trillius/Tools" "$($env:USERPROFILE)/Tools"
@@ -44,7 +44,7 @@
  
    - ```~/Tools/shell/zsh/profiles```
    - (❗TODO: script template profile install)
-#### Installation
+#### Local Installation
 1. Clone the repo:
    ```bash
    git clone https://github.com/Trillius/Tools ~/Tools
@@ -58,6 +58,42 @@
 #### How it looks:
 ![zsh with oh-my-zsh](docs/zsh.png "ZSH")
 
+### Docker Setup
+
+The provided dockerfile will be based on ubuntu and run both zsh and pwsh:
+
+#### Docker build + run (prefered) SSH
+```powershell
+
+cd ~/Tools/shell/
+
+docker build -t trillius/pwsh-zsh-posh .
+
+docker run -d -p 2222:22 trillius/pwsh-zsh-posh /bin/zsh
+
+#ssh to container
+ssh -p 2222 lab@localhost
+
+```
+#### Docker pull + run SSH
+
+```powershell
+docker pull trillius/pwsh-zsh-posh
+
+docker run -d -p 2222:22 "trillius/pwsh-zsh-posh" /bin/pwsh
+
+#ssh to container
+ssh -p 2222 lab@localhost
+```
+#### Docker pull + run attached
+
+```powershell
+#pull latest image
+docker pull trillius/pwsh-zsh-posh
+
+# run attached to container
+docker run -ti "trillius/pwsh-zsh-posh$($version.tag)" /bin/pwsh
+```
 
 
 
