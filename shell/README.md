@@ -69,7 +69,7 @@ cd ~/Tools/shell/
 
 docker build -t trillius/pwsh-zsh-posh .
 
-docker run -d -p 2222:22 trillius/pwsh-zsh-posh /bin/zsh
+docker run -d -p 2222:22 --name pwsh-zsh-posh trillius/pwsh-zsh-posh:v2.0
 
 #ssh to container
 ssh -p 2222 lab@localhost
@@ -80,7 +80,7 @@ ssh -p 2222 lab@localhost
 ```powershell
 docker pull trillius/pwsh-zsh-posh
 
-docker run -d -p 2222:22 "trillius/pwsh-zsh-posh" /bin/pwsh
+docker run -d -p 2222:22 --name pwsh-zsh-posh trillius/pwsh-zsh-posh:v2.0
 
 #ssh to container
 ssh -p 2222 lab@localhost
