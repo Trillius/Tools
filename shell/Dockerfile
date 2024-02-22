@@ -21,7 +21,8 @@ RUN apt-get install -y \
     dnsutils \
     strace \
     zsh \
-    tmux
+    tmux \
+    sudo
 
 RUN . /etc/os-release \
     && wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
@@ -39,6 +40,8 @@ RUN useradd -rm -d /home/lab -s /bin/zsh -g root -G sudo -u 1000 lab
 RUN echo 'root:root' | chpasswd && \
     echo 'lab:lab' | chpasswd
 
+RUN echo "lab ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN echo "root ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN mkdir /var/run/sshd \
     && sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
@@ -54,15 +57,12 @@ RUN cd ~ \
 
 RUN curl -s https://ohmyposh.dev/install.sh | bash -s --
 
-RUN chsh --shell /bin/zsh root 
-RUN chsh --shell /bin/zsh lab
-
-USER lab
-
 RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k || true
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-
 RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+RUN chsh --shell /bin/zsh root 
+RUN chsh --shell /bin/zsh lab
 
 RUN pwsh -Command Install-Module -Name Terminal-Icons -Force
 RUN pwsh -Command Install-Module -Name PSReadLine -Force
@@ -91,6 +91,6 @@ RUN echo "source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-
 RUN echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 RUN pwsh -Command ~/.config/powershell/Microsoft.PowerShell_profile.ps1
 
-EXPOSE 22
 
-CMD ["/usr/sbin/sshd", "-D"]
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D"]
